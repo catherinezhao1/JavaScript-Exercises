@@ -49,10 +49,13 @@ window.answers = () => {
     for (let i=1 ; i<8 ; i+=3){
         let line = ""
         for (let j=0 ; j<3 ; j++){
-            line += i+j
+            line += i+j 
         }
         console.log(line)
     }
+
+
+
 
     // #8 Write a for-loop that finds the largest common factor of these two numbers and stores it in lcf
     // (The largest common factor is the biggest number that both numbers are divisible by)
