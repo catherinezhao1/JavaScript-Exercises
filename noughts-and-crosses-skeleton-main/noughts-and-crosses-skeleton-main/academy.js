@@ -21,23 +21,65 @@ function takeTurn(row, column) {
 
 // Return either "noughts", "crosses" or "nobody" if the game is over.
 // Otherwise return null to continue playing.
+
 function checkWinner() {
     
     console.log("checkWinner was called");
-    for (let i =0; i<3 ; i++){
-        let count_mark = 0
-        for (let j =0; j<3; j++){
-            if (board[i][j] == "x" ){count_mark++}
-            else if(board[i][j] == "o"){ count_mark--}
-        }
-        if (count_mark == 3 || count_mark==-3){return "noughts"}
+    // check diagonal
+    if (board[0][0] == nought && board[1][1] == nought && board[2][2] == nought){
+        return "noughts"
     }
-    return null;
+    else if (board[0][0] == cross && board[1][1] == cross && board[2][2] == cross){
+        return "crosses"
+    }
+    else if (board[2][0] == nought && board[1][1] == nought && board[0][2]== nought){
+        return "noughts"
+    }
+    else if (board[2][0] == cross && board[1][1] == cross && board[0][2]== cross){
+        return "crosses"
+    }
+    // check for rows and columns
+    for (let i=0; i<board.length; i++){
+        let nought_count_row =0
+        let cross_count_row=0
+        let nought_count_col = 0
+        let cross_count_col = 0
+        for (let j=0; j<board[i].length; j++){
+            if (board[i][j] == nought){
+                nought_count_row++
+            }
+            if (board[i][j] == cross){
+                cross_count_row++
+            }
+            if (board[j][i] == nought){
+                nought_count_col++
+            }
+            if (board[j][i] == cross){
+                cross_count_col++
+            }
+        }
+        if (nought_count_row == 3 || nought_count_col == 3){
+            return "noughts"
+        }
+        else if (cross_count_row == 3 || cross_count_col ==3){
+            return "crosses"
+        }
+    }
+
+
+
+    if (count == 9 ){return "nobody"}
 }
+    
+
+
 
 // Set the game state back to its original state to play another game.
 function resetGame() {
     console.log("resetGame was called");
+    count = 0
+    board = [[null, null, null], [null, null, null], [null, null, null]];
+    return board;
 }
 
 // Return the current board state with either a "nought" or a "cross" in
